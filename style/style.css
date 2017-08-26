@@ -1,0 +1,16 @@
+.row{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+a{
+  margin-left: 10px;
+}
+.centered{
+  margin: auto;
+  max-width: 500px;
+}
+#search-bar{
+  margin: auto;
+  max-width: 300px;
+}
