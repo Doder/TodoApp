@@ -6,20 +6,22 @@ export const FETCH_COMPLETED_TASKS = "fetch_completed_tasks";
 export const FETCH_ALL_TASKS = "fetch_all_tasks";
 import _ from 'lodash';
 let newID = 0;
-export function addTask(title){
+export function addTask(title, activeFilter){
   const task = {id: newID, title, isActive: true};
   newID++;
   return{
     type: ADD_TASK,
-    payload: task
+    payload: task,
+    activeFilter
   };
 
 }
-export function switchStatus(task){
+export function switchStatus(task, activeFilter){
   task.isActive = !task.isActive;
   return({
     type: CHANGE_STATUS,
-    payload: task
+    payload: task,
+    activeFilter
   });
 }
 export function fetchActiveTasks(tasks){

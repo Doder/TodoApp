@@ -12,9 +12,9 @@ class Filters extends Component{
         <p>Show: </p>
       </div>
         <div className="col-md-11">
-          <a onClick={() => this.props.fetchAllTasks(this.props.tasks)}>All</a>
-          <a onClick={(e) => this.props.fetchActiveTasks(this.props.tasks)}>Active</a>
-          <a onClick={(e) => this.props.fetchCompletedTasks(this.props.tasks)}>Completed</a>
+          <a className={this.props.activeFilter === "ALL" ? "active" : ""} onClick={() => this.props.fetchAllTasks(this.props.tasks)}>All</a>
+          <a className={this.props.activeFilter === "ACTIVE" ? "active" : ""} onClick={() => this.props.fetchActiveTasks(this.props.tasks)}>Active</a>
+          <a className={this.props.activeFilter === "COMPLETED" ? "active" : ""} onClick={() => this.props.fetchCompletedTasks(this.props.tasks)}>Completed</a>
         </div>
       </div>
       </div>
@@ -22,8 +22,8 @@ class Filters extends Component{
   }
 }
 
-function mapStateToProps({tasks}){
-  return { tasks };
+function mapStateToProps({tasks, activeFilter}){
+  return { tasks, activeFilter };
 }
 
 export default connect(mapStateToProps, {fetchActiveTasks, fetchCompletedTasks, fetchAllTasks})(Filters);

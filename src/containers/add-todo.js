@@ -28,7 +28,7 @@ class AddTodo extends Component{
   }
 
   onSubmit(values){
-    this.props.addTask(values.title);
+    this.props.addTask(values.title, this.props.activeFilter);
     values.title = "";
   }
 
@@ -65,8 +65,8 @@ class AddTodo extends Component{
   }
 }
 
-function mapStateToProps({tasks}) {
-  return { tasks };
+function mapStateToProps({tasks, activeFilter}) {
+  return { tasks, activeFilter };
 }
 
 function mapDispatchToProps(dispatch){

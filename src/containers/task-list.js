@@ -11,7 +11,7 @@ class TaskList extends Component{
     if(!this.props.filteredTasks) return <p>There are no more tasks.</p>;
     return this.props.filteredTasks.map((task) => {
       const className = `list-group-item ${!task.isActive ? "list-group-item-success" : ""}`;
-      return <li className={className} onClick={()=> this.props.switchStatus(task)} key={task.id}>{task.title}</li>;
+      return <li className={className} onClick={()=> this.props.switchStatus(task, this.props.activeFilter)} key={task.id}>{task.title}</li>;
     });
   }
 
@@ -34,7 +34,8 @@ function mapStateToProps(state){
   return {
     tasks: state.tasks,
     filteredTasks: state.filteredTasks,
-    activeTask: state.activeTask
+    activeTask: state.activeTask,
+    activeFilter: state.activeFilter
   };
 }
 function mapDispatchToProps(dispatch){

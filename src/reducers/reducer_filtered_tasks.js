@@ -1,4 +1,4 @@
-import {FETCH_ACTIVE_TASKS, FETCH_COMPLETED_TASKS, FETCH_ALL_TASKS, ADD_TASK} from '../actions';
+import {FETCH_ACTIVE_TASKS, FETCH_COMPLETED_TASKS, FETCH_ALL_TASKS, ADD_TASK, CHANGE_STATUS} from '../actions';
 import _ from 'lodash';
 
 export default function(state = [], action){
@@ -10,8 +10,15 @@ export default function(state = [], action){
     case FETCH_ALL_TASKS:
       return action.payload;
     case ADD_TASK:
-      if(state.length === 0) return [ ...state, action.payload];
-      return state[0].isActive ? [ ...state, action.payload]: state;
+      return action.activeFilter !== "COMPLETED" ? [ ...state, action.payload]: state;
+    case CHANGE_STATUS:
+      if(action.activeFilter !== "ALL"){
+        const newState = _.reject(state, (task)=> {
+          return task.id === action.payload.id;
+        });
+        return newState;
+      }
+      return state;
     default:
       return state;
   }
