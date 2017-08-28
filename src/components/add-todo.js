@@ -7,7 +7,7 @@ import { addTask } from '../actions';
 class AddTodo extends Component{
 
   renderInput(field){
-    const className = `form-group ${field.meta.error && field.meta.touched ? "has-danger" : ""}`;
+    const className = `form-group ${field.meta.error && field.meta.submitFailed ? "has-danger" : ""}`;
 
     return(
       <div className={className}>
@@ -17,10 +17,10 @@ class AddTodo extends Component{
   }
 
   renderErrors(field){
-    if(field.meta.touched && field.meta.error){
+    if(field.meta.submitFailed && field.meta.error){
       return(
           <div className="alert alert-danger" role="alert">
-            {field.meta.touched ? field.meta.error : ""}
+            {field.meta.error}
           </div>
       );
     }
@@ -74,7 +74,7 @@ function validate(values) {
   const errors = {};
 
   if(!values.title || !values.title.match(/^[A-Z][0-9a-zA-Z ]*$/g)){
-    errors.title = "Enter valid title";
+    errors.title = "First letter must be capital. Symbols aren't allowed.";
   }
 
   return errors;
