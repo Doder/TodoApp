@@ -6,6 +6,13 @@
 a{
   margin-left: 10px;
 }
+a:hover{
+  cursor: pointer;
+  cursor: hand;
+}
+.active{
+  color: red;
+}
 .centered{
   margin: auto;
   max-width: 500px;

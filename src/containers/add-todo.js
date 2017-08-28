@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addTask } from '../actions';
+import { addTask, fetchAllTasks } from '../actions';
 
 class AddTodo extends Component{
 
@@ -65,8 +65,12 @@ class AddTodo extends Component{
   }
 }
 
+function mapStateToProps({tasks}) {
+  return { tasks };
+}
+
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ addTask : addTask }, dispatch);
+  return bindActionCreators({ addTask, fetchAllTasks }, dispatch);
 }
 
 function validate(values) {
@@ -81,7 +85,9 @@ function validate(values) {
 }
 
 
+
+
 export default reduxForm({
   validate,
   form: "NewTaskForm"
-})(connect(null, mapDispatchToProps)(AddTodo));
+})(connect(mapStateToProps, mapDispatchToProps)(AddTodo));

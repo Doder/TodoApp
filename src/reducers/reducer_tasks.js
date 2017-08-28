@@ -1,4 +1,5 @@
-import {ADD_TASK, CHANGE_STATUS} from '../actions';
+import {ADD_TASK, CHANGE_STATUS, FETCH_ACTIVE_TASKS, FETCH_COMPLETED_TASKS} from '../actions';
+import _ from 'lodash';
 
 export default function(state = [], action){
   switch (action.type) {

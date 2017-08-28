@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import AddTodo from './add-todo';
+import AddTodo from '../containers/add-todo';
 import SearchBar from './search-bar';
-import TaskList from './task-list';
-import Filters from './filters';
+import TaskList from '../containers/task-list';
+import Filters from '../containers/filters';
 
 export default class App extends Component {
   render() {

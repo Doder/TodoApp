@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {switchStatus} from '../actions';
+import {switchStatus, fetchAllTasks} from '../actions';
 
 class TaskList extends Component{
+  ComponentDidMount(){
+    this.props.fetchAllTasks(this.props.tasks);
+  }
   renderTasks(){
-    if(!this.props.tasks) return <p>There are no more tasks.</p>;
-    return this.props.tasks.map((task) => {
+    if(!this.props.filteredTasks) return <p>There are no more tasks.</p>;
+    return this.props.filteredTasks.map((task) => {
       const className = `list-group-item ${!task.isActive ? "list-group-item-success" : ""}`;
       return <li className={className} onClick={()=> this.props.switchStatus(task)} key={task.id}>{task.title}</li>;
     });
@@ -28,13 +31,14 @@ class TaskList extends Component{
 }
 
 function mapStateToProps(state){
-  return({
+  return {
     tasks: state.tasks,
+    filteredTasks: state.filteredTasks,
     activeTask: state.activeTask
-  });
+  };
 }
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({switchStatus}, dispatch);
+  return bindActionCreators({switchStatus, fetchAllTasks}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
