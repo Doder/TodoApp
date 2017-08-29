@@ -1,4 +1,5 @@
-import {FETCH_ACTIVE_TASKS, FETCH_COMPLETED_TASKS, FETCH_ALL_TASKS, ADD_TASK, CHANGE_STATUS} from '../actions';
+import {FETCH_ACTIVE_TASKS, FETCH_COMPLETED_TASKS,
+  FETCH_ALL_TASKS, ADD_TASK, CHANGE_STATUS, DO_A_SEARCH} from '../actions';
 import _ from 'lodash';
 
 export default function(state = [], action){

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {doSearch} from '../actions';
+import {connect} from 'react-redux';
 
-export default class SearchBar extends Component{
+class SearchBar extends Component{
   constructor(props){
     super(props);
     this.state = { term: "" };
@@ -8,14 +10,11 @@ export default class SearchBar extends Component{
   }
   handleChange(e){
     e.preventDefault();
-    this.setState({term : e.target.value});
-    const {term} = this.state;
-    if(term.length > 1){
-      console.log(term);
-      //make search
-    }
-
+    this.setState({term : e.target.value}, () => {
+      this.props.doSearch(this.state.term, this.props.filteredTasks);
+    });
   }
+
 
   render(){
     return(
@@ -30,3 +29,9 @@ export default class SearchBar extends Component{
     );
   }
 }
+
+function mapStateToProps({filteredTasks}){
+  return { filteredTasks };
+}
+
+export default connect(mapStateToProps, {doSearch})(SearchBar);

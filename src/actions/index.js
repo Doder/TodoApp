@@ -4,6 +4,7 @@ export const CHANGE_STATUS = "change_status";
 export const FETCH_ACTIVE_TASKS = "fetch_active_tasks";
 export const FETCH_COMPLETED_TASKS = "fetch_completed_tasks";
 export const FETCH_ALL_TASKS = "fetch_all_tasks";
+export const DO_A_SEARCH = "do_a_search";
 import _ from 'lodash';
 let newID = 0;
 export function addTask(title, activeFilter){
@@ -46,5 +47,12 @@ export function fetchAllTasks(tasks){
   return{
     type: FETCH_ALL_TASKS,
     payload: tasks
+  }
+}
+export function doSearch(term, tasks){
+
+  return{
+    type: DO_A_SEARCH,
+    payload: {term, tasks}
   }
 }
